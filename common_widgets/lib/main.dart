@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const TadasApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class TadasApp extends StatelessWidget {
+  const TadasApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(),
+    return const MaterialApp(
+      home: MyHomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -28,45 +24,96 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool value = false;
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Settings"),
+        title: const Text("Default App"),
       ),
       body: Center(
         child: Column(
-          children: [
-            Image.network("https://picsum.photos/200/200"),
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: const TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Username',
-                ),
+          children: <Widget>[
+            Container(
+              height: 200,
+              margin: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                border: Border.all(width: 10),
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.lightBlue,
+              ),
+              child: PageView(
+                children: const [
+                  Text(
+                    "Tadas",
+                  ),
+                  Text(
+                    "Andrei",
+                  ),
+                  Text(
+                    "Last Entry",
+                  ),
+                  Text(
+                    "Tadas",
+                  ),
+                  Text(
+                    "Andrei",
+                  ),
+                  Text(
+                    "Last Entry",
+                  ),
+                  Text(
+                    "Tadas",
+                  ),
+                  Text(
+                    "Andrei",
+                  ),
+                  Text(
+                    "Last Entry",
+                  ),
+                  Text(
+                    "Tadas",
+                  ),
+                  Text(
+                    "Andrei",
+                  ),
+                  Text(
+                    "Last Entry",
+                  ),
+                  Text(
+                    "Tadas",
+                  ),
+                  Text(
+                    "Andrei",
+                  ),
+                  Text(
+                    "Last Entry",
+                  ),
+                ],
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("Notifications "),
-                Switch(value: value, onChanged: (newValue) {
-                  setState(() {
-                    value = newValue;
-                  });
-                }),
-              ],
+            const Text(
+              'You have pushed the button this many times:',
             ),
-            ElevatedButton(onPressed: () {}, child: Text("Save"))
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
       ),
     );
   }
